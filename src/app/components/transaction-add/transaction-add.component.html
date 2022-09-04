@@ -22,8 +22,8 @@
       <ul>
         <li *ngFor="let participant of participants">
           <mat-checkbox [(ngModel)]="participant.selected"
-                        (change)="valueChange(participant.name,$event)">
-            {{participant.name}}
+                        (change)="valueChange(participant.username,$event)">
+            {{participant.username}}
           </mat-checkbox>
         </li>
       </ul>

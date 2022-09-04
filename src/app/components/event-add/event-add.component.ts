@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service/events.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-event-add',
@@ -9,8 +10,9 @@ import { EventsService } from 'src/app/services/events.service/events.service';
 export class EventAddComponent implements OnInit {
 
   eventName: string = ""
-
-  constructor(private eventsService: EventsService) { }
+  
+  constructor(private eventsService: EventsService,
+              public dialogRef: MatDialogRef<EventAddComponent>,) { }
 
   ngOnInit(): void {
   }
@@ -20,8 +22,14 @@ export class EventAddComponent implements OnInit {
     this.eventsService.addEvent(this.eventName, "sample event description").subscribe((res: any) => {
       if (res){
         console.log(res)
+        this.eventsService.eventFetchTrigger.next(0)
       }
-    } )
+    })
+    this.closeOverlay()
+  }
+
+  closeOverlay(){
+    this.dialogRef.close()
   }
 
 }

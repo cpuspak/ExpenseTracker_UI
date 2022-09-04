@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { NgModule } from '@angular/core'; 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ParticipantLinkComponentComponent } from '../participant-link-component/participant-link-component.component';
@@ -12,10 +12,11 @@ import { EventsService } from 'src/app/services/events.service/events.service';
   styleUrls: ['./event-component.component.scss']
 })
 export class EventComponentComponent implements OnInit, AfterViewInit {
+  @Input() eventName = ""
+  @Input() eventId = 0
 
   panelOpenState: boolean = false;
   transactions: any = []
-  eventName: string = "sampleTestEvent"
 
   participants: any = []
 

@@ -1,6 +1,9 @@
 <div class="events">
     <span>Events :</span><br><br>
-    <app-event-component></app-event-component>
+    <div *ngFor="let event of allEvents">
+        <app-event-component [eventId]="event.EventId" [eventName]="event.EventName"></app-event-component>
+    </div>
+    
     <button mat-mini-fab color="accent" style="margin: 5px;" (click)="addEventPopup()">
         <mat-icon>+</mat-icon>
     </button>

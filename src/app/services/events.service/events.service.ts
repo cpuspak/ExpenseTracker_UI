@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 export class EventsService {
 
   sendAddEventRequest = new Subject()
+  eventFetchTrigger = new Subject()
 
   constructor(private http: HttpClient) {
 
