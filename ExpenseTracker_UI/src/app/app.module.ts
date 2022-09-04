@@ -14,6 +14,14 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { ParticipantComponent } from './components/participant/participant.component';
 import { TransactionAddComponent } from './components/transaction-add/transaction-add.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import { FormsModule } from '@angular/forms';
+import { ParticipantLinkComponentComponent } from './components/participant-link-component/participant-link-component.component';
+import { GlobalParticipantsComponent } from './components/global-participants/global-participants.component'
+import { HttpClientModule } from '@angular/common/http';
+import { EventAddComponent } from './components/event-add/event-add.component';
 
 
 @NgModule({
@@ -23,7 +31,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     EventComponentComponent,
     TransactionComponent,
     ParticipantComponent,
-    TransactionAddComponent
+    TransactionAddComponent,
+    ParticipantLinkComponentComponent,
+    GlobalParticipantsComponent,
+    EventAddComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +44,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     CdkAccordionModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

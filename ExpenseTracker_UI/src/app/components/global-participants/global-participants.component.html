@@ -1,0 +1,9 @@
+<div  *ngIf="!globalUsers || globalUsers.length == 0">
+    <span>Happy solo trip!</span>
+</div>
+
+<div *ngIf="globalUsers && globalUsers.length > 0">
+    <div *ngFor="let user of globalUsers">
+        {{user.username}} 
+    </div>
+</div>

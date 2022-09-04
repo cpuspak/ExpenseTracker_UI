@@ -1,0 +1,1 @@
+export const backendUrl: string = "https://expense-tracker-balancer-api.herokuapp.com"

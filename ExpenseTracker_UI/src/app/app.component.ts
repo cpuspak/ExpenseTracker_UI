@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { EventsService } from './services/events.service/events.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { EventAddComponent } from './components/event-add/event-add.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ExpenseTracker_UI';
+  constructor(private eventsService: EventsService,
+              public dialog: MatDialog){
+
+  }
+
+
+
+  ngOnInit():void {
+
+  }
+
+  addEventPopup(){
+    // this.eventsService.sendAddEventRequest.next(0);
+    const dialogRef = this.dialog.open(EventAddComponent,{
+      "width": "90vw"
+    });
+  }
+
 }
