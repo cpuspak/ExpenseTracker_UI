@@ -9,7 +9,7 @@ import { EventAddComponent } from './components/event-add/event-add.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ExpenseTracker_UI';
+  title = 'expense-tracker-ui';
   constructor(private eventsService: EventsService,
               public dialog: MatDialog){
 
