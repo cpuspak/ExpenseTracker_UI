@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ecomfrontend",
+            "outputPath": "dist/ExpenseTracker_UI",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ecomfrontend:build:production"
+              "browserTarget": "ExpenseTracker_UI:build:production"
             },
             "development": {
-              "browserTarget": "ecomfrontend:build:development"
+              "browserTarget": "ExpenseTracker_UI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ecomfrontend:build"
+            "browserTarget": "ExpenseTracker_UI:build"
           }
         },
         "test": {
