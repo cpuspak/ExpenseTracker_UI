@@ -1,0 +1,22 @@
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Event name 1
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Participants : </p>
+    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+      <mat-icon>+</mat-icon>
+    </button>
+    <p>Transactions : </p>
+    
+    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addTransaction()">
+      <mat-icon>+</mat-icon>
+    </button>
+  </mat-expansion-panel>
+</mat-accordion>
