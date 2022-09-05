@@ -4,3 +4,20 @@ html {
     background: rgb(44, 44, 44);
     color: rgb(177, 138, 81);
   }
+
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(230, 230, 182);
+  border-radius: 10px;
+}

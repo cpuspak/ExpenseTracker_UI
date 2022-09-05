@@ -72,7 +72,7 @@ export class ParticipantLinkComponentComponent implements OnInit {
   addSelectedParticipantsToEvent() {
     var localParticipantList: any = []
     this.participants.forEach((element: any) => {
-      if (element.selected) localParticipantList.push(element.username)
+      if (element.selected && !element.disabled) localParticipantList.push(element.username)
     })
     console.log("localParticipantList", localParticipantList)
     this.eventsService.addParticipantsToEvent(this.data.eventName, localParticipantList).subscribe((res: any) => {
