@@ -1,26 +1,38 @@
+
 <div>
     <img class="image" src="assets/logo.png" alt="LOGO">
 </div>
-<br><br>
-<div class="events inline">
-    <span>Events :</span><br><br>
-    <div *ngFor="let event of allEvents">
-        <app-event-component [eventId]="event.EventId" [eventName]="event.EventName"></app-event-component>
-    </div>
-    
-    <button mat-mini-fab color="accent" style="margin: 10px;" (click)="addEventPopup()">
-        <mat-icon>+</mat-icon>
-    </button>
-</div>
-<div class = "imgDiv">
-    <img class="image" src="assets/spinning-coin-gif.gif" alt="GIF">
-</div>
-<hr class="clearBoth">
-<div class="participants">
-    <span>Participants :</span><br><br>
-    <app-global-participants></app-global-participants>
-    <button mat-mini-fab color="accent" style="margin: 5px;" disabled>
-        <mat-icon>+</mat-icon>
-    </button>
-</div>
+<mat-tab-group>
+    <mat-tab label="First">
+        
+        <br><br>
+        <div class="events inline">
+            <span>Events :</span><br><br>
+            <div *ngFor="let event of allEvents">
+                <app-event-component [eventId]="event.EventId" [eventName]="event.EventName"></app-event-component>
+            </div>
+            
+            <button mat-mini-fab color="accent" style="margin: 10px;" (click)="addEventPopup()">
+                <mat-icon>+</mat-icon>
+            </button>
+        </div>
+        <div class = "imgDiv">
+            <img class="image" src="assets/spinning-coin-gif.gif" alt="GIF">
+        </div>
+        
+
+        <hr class="clearBoth">
+    </mat-tab>
+    <mat-tab label="Second">
+        <div class="participants">
+            <span>Participants :</span><br><br>
+            <app-global-participants></app-global-participants>
+            <button mat-mini-fab color="accent" style="margin: 5px;" disabled>
+                <mat-icon>+</mat-icon>
+            </button>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+
+
 

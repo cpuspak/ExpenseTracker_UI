@@ -22,6 +22,7 @@ import { ParticipantLinkComponentComponent } from './components/participant-link
 import { GlobalParticipantsComponent } from './components/global-participants/global-participants.component'
 import { HttpClientModule } from '@angular/common/http';
 import { EventAddComponent } from './components/event-add/event-add.component';
+import { MatTabsModule } from '@angular/material/tabs'
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { EventAddComponent } from './components/event-add/event-add.component';
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
