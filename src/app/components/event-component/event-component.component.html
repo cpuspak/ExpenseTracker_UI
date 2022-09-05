@@ -10,6 +10,9 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <p>Participants : </p>
+    <div *ngFor="let participant of participants">
+      <app-participant [participantName]="participant.username" [participantId]="participant.id"></app-participant>
+    </div>
     <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addParticipantToEvent()">
       <mat-icon>+</mat-icon>
     </button>
