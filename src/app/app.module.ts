@@ -23,6 +23,7 @@ import { GlobalParticipantsComponent } from './components/global-participants/gl
 import { HttpClientModule } from '@angular/common/http';
 import { EventAddComponent } from './components/event-add/event-add.component';
 import { MatTabsModule } from '@angular/material/tabs'
+import { MatCardModule } from '@angular/material/card'
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MatTabsModule } from '@angular/material/tabs'
     MatCheckboxModule,
     FormsModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

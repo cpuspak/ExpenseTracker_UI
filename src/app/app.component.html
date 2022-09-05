@@ -16,6 +16,12 @@
                 <mat-icon>+</mat-icon>
             </button>
         </div>
+
+
+        <div *ngFor="let transaction of transactions">
+            <div>{{transaction[0]}},{{transaction[1]}},{{transaction[2]}}</div>
+        </div>
+       
         <div class = "imgDiv">
             <img class="image" src="assets/spinning-coin-gif.gif" alt="GIF">
         </div>

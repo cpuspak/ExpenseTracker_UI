@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { EventsService } from './services/events.service/events.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EventAddComponent } from './components/event-add/event-add.component';
+import { CalculateService } from './services/calculate.service/calculate.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   title = 'expense-tracker-ui';
   constructor(private eventsService: EventsService,
-              public dialog: MatDialog){
+              public dialog: MatDialog,
+              private calculateService: CalculateService){
 
   }
 
 
-
+  transactions: any = []
   ngOnInit():void {
     this.eventsService.fetchAllEvents().subscribe((res: any) => {
       if(res && res.Events && res.Events.length) this.allEvents = res.Events;
@@ -33,6 +35,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         if (event && event.Events && event.Events.length)
         this.allEvents = event.Events
       })
+    })
+
+    this.calculateService.getCalculatedData.subscribe((calculatedData: any) => {
+      console.log(calculatedData, "from main")
+      if (calculatedData && calculatedData.transactionDetails) this.transactions = calculatedData.transactionDetails
     })
   }
 

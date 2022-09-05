@@ -1,8 +1,8 @@
 <mat-form-field appearance="fill">
     <mat-label>Money paid from : </mat-label>
-    <mat-select>
-      <mat-option *ngFor="let participant of participants" [value]="participant">
-        {{participant.name}}
+    <mat-select [(ngModel)]="moneyFrom">
+      <mat-option *ngFor="let participant of participants" [value]="participant.username">
+        {{participant.username}}
       </mat-option>
     </mat-select>
 </mat-form-field>
@@ -32,15 +32,15 @@
 
 <mat-form-field appearance="fill">
     <mat-label class="full-width">Amount</mat-label>
-    <input matInput placeholder="Description for transaction">
+    <input matInput placeholder="Amount" [(ngModel)]="amount" type="number">
 </mat-form-field>
 <br>
 
 <mat-form-field appearance="fill">
   <mat-label class="full-width">Description</mat-label>
-  <input matInput placeholder="Transaction Description">
+  <input matInput placeholder="Transaction Description" [(ngModel)]="description">
 </mat-form-field>
 <br>
 
 
-<button mat-raised-button color="primary" style="float: right;">Add</button>
+<button mat-raised-button color="primary" style="float: right;" (click)="addTransaction()">Add</button>

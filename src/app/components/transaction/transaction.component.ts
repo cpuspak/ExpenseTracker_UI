@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-transaction',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
+  @Input() amount: number = 0
+  @Input() transactionId: number = 0
+  @Input() transactionTime: string = ""
+  @Input() paidByUserName: string = ""
+  @Input() sharedByUserNames: Array<string> = []
+
   constructor() { }
 
   ngOnInit(): void {
+    //console.log(this.amount, this.transactionId, this.transactionTime, this.paid)
   }
 
 }

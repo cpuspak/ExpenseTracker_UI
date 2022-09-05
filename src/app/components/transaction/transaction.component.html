@@ -1,1 +1,10 @@
-<p>transaction works!</p>
+
+
+<mat-card style="width: auto;">
+    {{paidByUserName}} paid {{amount}} for 
+    <div *ngFor="let liable of sharedByUserNames">
+        <span>{{liable}}</span>,
+    </div>
+    
+    <button mat-button>VIEW</button>
+</mat-card>

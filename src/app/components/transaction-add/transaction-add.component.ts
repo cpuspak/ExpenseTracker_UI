@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GlobalUsersService } from 'src/app/services/global-users.service/global-users.service';
+import { TransactionsService } from 'src/app/services/transactions.service/transactions.service';
 
 @Component({
   selector: 'app-transaction-add',
@@ -10,24 +12,29 @@ export class TransactionAddComponent implements OnInit {
 
   participants: any = []
   allSelected: boolean = false;
-  constructor(private globalUsersService: GlobalUsersService) { }
+  moneyFrom: string = ""
+  amount: number = 0
+  description: string = ""
+
+
+  constructor(private globalUsersService: GlobalUsersService,
+              @Inject(MAT_DIALOG_DATA) public data: {"eventName":""},
+              private transactionsService: TransactionsService,
+              public dialogRef: MatDialogRef<TransactionAddComponent>) { }
 
   ngOnInit(): void {
-    this.globalUsersService.getGlobalListOfUsers().subscribe((res: any) => {
-      console.log(res.Participants)
-      if(res && res.Participants){
-        this.participants = res.Participants;
+
+    console.log("event name from transaction add", this.data.eventName)
+    
+    this.globalUsersService.getEventSpecificParticipantList(this.data.eventName).subscribe((res: any) => {
+      if(res && res.EventParticipants){
+        this.participants = res.EventParticipants;
         this.participants.forEach((element: any) => {
           element["selected"] = false;
         });
       }
     },
-    err => console.log("error fetching participants"))
-    // this.participants = [
-    //   {'name':'puspak', 'selected': false},
-    //   {'name':'arkes', 'selected': false},
-    //   {'name':'iqbal', 'selected': false},
-    // ]
+    err => console.log("err getting data"))
   }
 
   allComplete: boolean = false;
@@ -52,5 +59,26 @@ export class TransactionAddComponent implements OnInit {
     console.log(this.participants)
   }
 
+
+  addTransaction() {
+
+    var localUserList: any = []
+
+    this.participants.forEach((element: any) => {
+      if (element.selected) localUserList.push(element.username)
+    })
+
+    this.transactionsService.addTransaction(this.data.eventName, this.moneyFrom, this.amount, localUserList).subscribe((res: any) => {
+      this.transactionsService.triggerFetchTransaction.next(0)
+    },
+    err => console.log("err adding txn"))
+
+    this.closeDialog()
+
+  }
+
+  closeDialog(){
+    this.dialogRef.close()
+  }
 
 }

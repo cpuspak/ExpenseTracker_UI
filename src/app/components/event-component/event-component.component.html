@@ -17,11 +17,19 @@
       <mat-icon>+</mat-icon>
     </button>
     <p>Transactions : </p>
-    
+    <div *ngFor="let transaction of transactions">
+      <app-transaction 
+        [amount]="transaction.Amount" 
+        [transactionId]="transaction.TxnID" 
+        [paidByUserName]="transaction.paidByUserName" 
+        [transactionTime]="transaction.TxnTime"
+        [sharedByUserNames]="transaction.sharedByUserNames">
+      </app-transaction>
+    </div>
     <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addTransaction()">
       <mat-icon>+</mat-icon>
     </button>
-    <button>Calculate</button>
+    <button mat-button (click)="calculate()" style="float: right;">Calculate</button>
   </mat-expansion-panel>
   
 </mat-accordion>
