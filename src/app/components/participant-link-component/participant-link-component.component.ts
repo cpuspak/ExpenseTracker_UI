@@ -86,7 +86,7 @@ export class ParticipantLinkComponentComponent implements OnInit {
   findWhetherAnySelected(){
     var returnVal: boolean = false
     this.participants.forEach((element: any) => {
-      if(element.selected) {
+      if(element.selected && element.disabled == false) {
         returnVal = true;
       }
     });
