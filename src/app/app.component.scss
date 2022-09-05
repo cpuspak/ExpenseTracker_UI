@@ -1,0 +1,26 @@
+.image {
+    width: 95px;
+    border-radius: 5%;
+    position: relative;
+    left: 2%;
+    top: 1vw;
+}
+
+.imgDiv {
+    position: relative;
+    left: 27%;
+    top: 10vw;
+}
+
+.events {
+    width: 40%;
+    height: 40vw;
+    position: relative;
+    left: 5%;
+    overflow: auto;
+}
+
+div.inline { 
+    float:left; 
+}
+.clearBoth { clear:both; }
