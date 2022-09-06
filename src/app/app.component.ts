@@ -24,7 +24,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit():void {
     this.eventsService.fetchAllEvents().subscribe((res: any) => {
       if(res && res.Events && res.Events.length) this.allEvents = res.Events;
-      console.log(this.allEvents)
     },
     err => console.log("error fetching events from api"))
   }
@@ -38,7 +37,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     })
 
     this.calculateService.getCalculatedData.subscribe((calculatedData: any) => {
-      console.log(calculatedData, "from main")
       if (calculatedData && calculatedData.transactionDetails) this.transactions = calculatedData.transactionDetails
     })
   }
