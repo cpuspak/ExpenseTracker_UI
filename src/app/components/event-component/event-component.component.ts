@@ -36,20 +36,20 @@ export class EventComponentComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.globalUsersService.getEventSpecificParticipantList(this.eventName).subscribe((res: any) => {
       if (res && res.EventParticipants) this.participants = res.EventParticipants
-      console.log(this.participants, this.eventName)
     },
     err => console.log("error fetching participant specific to event for event", this.eventName))
 
     this.globalUsersService.eventParticipantsFetchTrigger.subscribe((res: any) => {
+      if (!res || res != this.eventName) {
+        return
+      }
       this.globalUsersService.getEventSpecificParticipantList(this.eventName).subscribe((res: any) => {
         if (res && res.EventParticipants) this.participants = res.EventParticipants
-        console.log(this.participants, this.eventName)
       },
       err => console.log("error fetching participant specific to event for event", this.eventName))
     })
 
     this.transactionsService.fetchTransaction(this.eventName).subscribe((res: any) => {
-      console.log(res)
       if (res && res.txns){
         this.transactions = res.txns
       }
@@ -57,6 +57,9 @@ export class EventComponentComponent implements OnInit, AfterViewInit {
     err => "error fetching transactions")
 
     this.transactionsService.triggerFetchTransaction.subscribe((res: any) => {
+      if (!res || res != this.eventName) {
+        return
+      }
       this.transactionsService.fetchTransaction(this.eventName).subscribe((transactions: any) => {
         if (transactions && transactions.txns)
           this.transactions = transactions.txns
@@ -81,7 +84,6 @@ export class EventComponentComponent implements OnInit, AfterViewInit {
 
   calculate() {
     this.calculateService.calculate(this.eventName).subscribe((res: any) => {
-      console.log(res)
       this.calculateService.getCalculatedData.next(res)
     })
   }

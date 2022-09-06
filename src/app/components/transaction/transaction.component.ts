@@ -16,7 +16,6 @@ export class TransactionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //console.log(this.amount, this.transactionId, this.transactionTime, this.paid)
   }
 
 }

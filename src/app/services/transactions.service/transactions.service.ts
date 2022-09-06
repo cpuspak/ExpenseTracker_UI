@@ -15,9 +15,7 @@ export class TransactionsService {
 
 
   addTransaction (eventName: string, paidByUserName: string, amount: number, sharedByUserNames: any) {
-    console.log( {
-      "eventName": eventName, "paidByUserName": paidByUserName, "Amount": amount, "sharedByUserNames" : sharedByUserNames
-    })
+    
     return this.http.put(backendUrl+"/add_txns", {
       "eventName": eventName, "paidByUserName": paidByUserName, "Amount": amount, "sharedByUserNames" : sharedByUserNames
     })

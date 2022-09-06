@@ -18,7 +18,6 @@ export class GlobalParticipantsComponent implements OnInit {
       (res: any) => {
         if (res && res.Participants && res.Participants.length){
           this.globalUsers = res.Participants
-          console.log(this.globalUsers)
         }
       },
       err => console.log("error fetching data from api")

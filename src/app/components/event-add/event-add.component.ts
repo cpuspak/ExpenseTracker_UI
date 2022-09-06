@@ -18,11 +18,9 @@ export class EventAddComponent implements OnInit {
   }
 
   addEvent(event: any){
-    console.log(this.eventName)
     this.eventsService.addEvent(this.eventName, "sample event description").subscribe((res: any) => {
       if (res){
-        console.log(res)
-        this.eventsService.eventFetchTrigger.next(0)
+        this.eventsService.eventFetchTrigger.next(this.eventName)
       }
     })
     this.closeOverlay()

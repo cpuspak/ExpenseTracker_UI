@@ -13,7 +13,6 @@ import { EventAddComponent } from '../event-add/event-add.component';
 export class ParticipantLinkComponentComponent implements OnInit {
 
   participants: any = []
-  eventName: string = ""
   allSelected: boolean = false
   constructor(private globalUsersService: GlobalUsersService,
             @Inject(MAT_DIALOG_DATA) public data: {"eventName":""},
@@ -30,7 +29,6 @@ export class ParticipantLinkComponentComponent implements OnInit {
           element.disabled = false
         });
         this.globalUsersService.getEventSpecificParticipantList(this.data.eventName).subscribe((res: any) => {
-          console.log(res, this.data.eventName, "in ngInit in participant link")
           if(res && res.EventParticipants) {
             res.EventParticipants.forEach((element: any) => {
               this.participants.forEach((participant: any) => {
@@ -48,16 +46,13 @@ export class ParticipantLinkComponentComponent implements OnInit {
 
 
     })
-    // console.log("data",this.data)
   }
 
 
   valueChange(name: any, event: any){
-    console.log(name, event.checked)
     this.participants.forEach((element: any) => {
       if(element['name'] == name) element['selected'] = event.checked
     });
-    console.log(this.participants)
   }
 
   setAll(event: any){
@@ -66,7 +61,6 @@ export class ParticipantLinkComponentComponent implements OnInit {
       if (!element['disabled'])
         element['selected'] = this.allSelected
     });
-    console.log(this.participants)
   }
 
   addSelectedParticipantsToEvent() {
@@ -74,9 +68,8 @@ export class ParticipantLinkComponentComponent implements OnInit {
     this.participants.forEach((element: any) => {
       if (element.selected && !element.disabled) localParticipantList.push(element.username)
     })
-    console.log("localParticipantList", localParticipantList)
     this.eventsService.addParticipantsToEvent(this.data.eventName, localParticipantList).subscribe((res: any) => {
-      this.globalUsersService.eventParticipantsFetchTrigger.next(0)
+      this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
     },
     err => console.log("internal server error"))
     this.closeOverlay()

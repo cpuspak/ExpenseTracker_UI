@@ -39,16 +39,12 @@ export class TransactionAddComponent implements OnInit {
 
   allComplete: boolean = false;
 
-  updateAllComplete() {
-    console.log("clicked")
-  }
+  
 
   valueChange(name: any, event: any){
-    console.log(name, event.checked)
     this.participants.forEach((element: any) => {
       if(element['username'] == name) element['selected'] = event.checked
     });
-    console.log(this.participants)
   }
 
   setAll(event: any){
@@ -56,7 +52,6 @@ export class TransactionAddComponent implements OnInit {
     this.participants.forEach((element: any) => {
       element['selected'] = this.allSelected
     });
-    console.log(this.participants)
   }
 
 
@@ -69,7 +64,7 @@ export class TransactionAddComponent implements OnInit {
     })
 
     this.transactionsService.addTransaction(this.data.eventName, this.moneyFrom, this.amount, localUserList).subscribe((res: any) => {
-      this.transactionsService.triggerFetchTransaction.next(0)
+      this.transactionsService.triggerFetchTransaction.next(this.data.eventName)
     },
     err => console.log("err adding txn"))
 
