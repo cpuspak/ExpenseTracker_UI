@@ -17,9 +17,10 @@
             </button>
         </div>
 
-
-        <div *ngFor="let transaction of transactions">
-            <div>{{transaction[0]}},{{transaction[1]}},{{transaction[2]}}</div>
+        <div class="txns">
+            <div *ngFor="let transaction of transactions">
+                <div>{{transaction[0]}},{{transaction[1]}},{{transaction[2]}}</div>
+            </div>
         </div>
        
         <div class = "imgDiv">
