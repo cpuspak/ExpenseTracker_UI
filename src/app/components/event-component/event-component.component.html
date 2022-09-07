@@ -23,7 +23,8 @@
         [transactionId]="transaction.TxnID" 
         [paidByUserName]="transaction.paidByUserName" 
         [transactionTime]="transaction.TxnTime"
-        [sharedByUserNames]="transaction.sharedByUserNames">
+        [sharedByUserNames]="transaction.sharedByUserNames"
+        [eventName]="eventName">
       </app-transaction>
     </div>
     <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addTransaction()">
