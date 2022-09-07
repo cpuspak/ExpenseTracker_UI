@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TransactionsService } from 'src/app/services/transactions.service/transactions.service';
 
 @Component({
   selector: 'app-transaction',
@@ -12,10 +13,20 @@ export class TransactionComponent implements OnInit {
   @Input() transactionTime: string = ""
   @Input() paidByUserName: string = ""
   @Input() sharedByUserNames: Array<string> = []
+  @Input() eventName: string =""
 
-  constructor() { }
+  constructor(private transactionsService: TransactionsService) { }
 
   ngOnInit(): void {
+  }
+
+  deleteTransaction(){
+    this.transactionsService.deleteTransaction(this.transactionId).subscribe((res: any) => {
+      if(res){
+        this.transactionsService.triggerFetchTransaction.next(this.eventName)
+      }
+    },
+    err => console.log("error deleting transaction"))
   }
 
 }

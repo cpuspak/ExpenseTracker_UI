@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { backendUrl } from 'src/app/backendUrl';
 import { Subject } from 'rxjs';
+import { HttpRequest } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class TransactionsService {
 
   fetchTransaction (eventName: string){
     return this.http.get(backendUrl + "/fetch_txns/"+eventName)
+  }
+
+  deleteTransaction(transactionId: number){
+    // let req = new HttpRequest('DELETE', backendUrl + "/delete_txns");
+    // let newReq = req.clone({body: [10]});
+    return this.http.delete(backendUrl + "/delete_txns", {body:{"TxnID": transactionId}})
   }
 
 }
