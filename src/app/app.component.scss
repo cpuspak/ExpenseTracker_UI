@@ -12,11 +12,15 @@
     top: 10vw;
 }
 
-.events {
-    width: 40%;
-    height: 40vw;
+.txns {
+    width: 35%;
     position: relative;
-    left: 5%;
+    margin-left: 55%;
+    background-color: black;
+}
+
+.events {
+    height: 70vh;
     overflow: auto;
 }
 

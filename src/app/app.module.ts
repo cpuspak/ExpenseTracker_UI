@@ -23,7 +23,8 @@ import { GlobalParticipantsComponent } from './components/global-participants/gl
 import { HttpClientModule } from '@angular/common/http';
 import { EventAddComponent } from './components/event-add/event-add.component';
 import { MatTabsModule } from '@angular/material/tabs'
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component'
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatCardModule } from '@angular/material/card'
     TransactionAddComponent,
     ParticipantLinkComponentComponent,
     GlobalParticipantsComponent,
-    EventAddComponent
+    EventAddComponent,
+    TransactionDetailsComponent
   ],
   imports: [
     BrowserModule,
