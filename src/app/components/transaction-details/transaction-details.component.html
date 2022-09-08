@@ -12,6 +12,7 @@
             <td>{{transaction.sharedByUserNames}}</td>
             <td>{{transaction.Amount}}</td>
             <td>{{transaction.TxnID}}</td>
+            <td><button id={{transaction.TxnID}} class="circularRedButton" (click)="deleteTransaction($event)">-</button></td>
         </tr>
     </table>
     <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addTransaction()">

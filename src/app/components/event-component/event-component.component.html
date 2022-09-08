@@ -1,19 +1,26 @@
-<div class="eventCard inline" (click)="transactionDetails()">
+<div class="eventCard inline">
   <div class="cardHeader">{{eventName}}</div>
   <hr class="hrEle">
   <div class="participant">
     <span *ngFor="let participant of participants">
       <app-participant [participantName]="participant.username" [participantId]="participant.id"></app-participant>
     </span>
+    <br>
+    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addParticipantToEvent()" style="margin: 5px;">
+      <mat-icon>+</mat-icon>
+    </button>
   </div>
-  <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addParticipantToEvent()">
-    <mat-icon>+</mat-icon>
-  </button>
-  <br><br>
-  <div class = "description">
-    The mission is timed for launch when Earth and Mars are in good positions relative to each other for landing on Mars. That is, it takes less power to travel to Mars at this time, compared to other times when Earth and Mars are in different positions in their orbits. As Earth and Mars orbit the Sun at different speeds and distances, once about every 26 months, they are aligned in a way that allows the most energy-efficient trip to Mars.
+  <div (click)="transactionDetails()">
+      
+      <div class = "description">
+        The mission is timed for launch when Earth and Mars are in good positions relative to each other for landing on Mars. That is, it takes less power to travel to Mars at this time, compared to other times when Earth and Mars are in different positions in their orbits. As Earth and Mars orbit the Sun at different speeds and distances, once about every 26 months, they are aligned in a way that allows the most energy-efficient trip to Mars.
+      </div>
   </div>
+  
+  
 </div>
+
+
 <!--
 <mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState = true"

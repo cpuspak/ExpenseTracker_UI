@@ -22,3 +22,11 @@ th {
     background-color: #04AA6D;
     color: white;
   }
+
+.circularRedButton {
+  background-color: rgb(215, 109, 109); 
+  border-radius: 15px;
+  border-width: 0px;
+  margin-left: 5px;
+  justify-content: center;
+}

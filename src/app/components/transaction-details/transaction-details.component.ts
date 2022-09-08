@@ -38,15 +38,24 @@ export class TransactionDetailsComponent implements OnInit {
         return
       }
       this.transactionsService.fetchTransaction(this.data.eventName).subscribe((transactions: any) => {
-        if (transactions && transactions.txns)
+        if (transactions && transactions.txns){
           this.transactions = transactions.txns
+          this.calculate()
+        }
+          
       },
       err => console.log("error fetching transactions"))
+
+      
     })
 
     this.calculateService.getCalculatedData.subscribe((calculatedData: any) => {
       if (calculatedData && calculatedData.transactionDetails) this.toDotxns = calculatedData.transactionDetails
     })
+
+    
+
+    
 
   }
 
@@ -61,6 +70,16 @@ export class TransactionDetailsComponent implements OnInit {
     this.calculateService.calculate(this.data.eventName).subscribe((res: any) => {
       this.calculateService.getCalculatedData.next(res)
     })
+  }
+
+  deleteTransaction(event: any){
+    var transactionId = Number(event.srcElement.id)
+    this.transactionsService.deleteTransaction(transactionId).subscribe((res: any) => {
+      if(res){
+        this.transactionsService.triggerFetchTransaction.next(this.data.eventName)
+      }
+    },
+    err => console.log("error in deleting transaction"))
   }
 
 }
