@@ -19,14 +19,17 @@
     margin: 5px;
 }
 
+
 .eventCard {
     margin: 3%;
     padding: 1%;
-    width: 350px;
+    width: 85vw;
+    max-width: 350px;
     height: 400px;
     box-shadow: 3px 4px 8px 2px rgb(177, 138, 81);
     border-radius: 5%;
     background-color: rgb(31, 31, 31);
+
 }
 
 div.inline { 

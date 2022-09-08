@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 export class GlobalUsersService {
 
   eventParticipantsFetchTrigger = new Subject()
+  eventUserFetchTrigger = new Subject()
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class GlobalUsersService {
 
   getEventSpecificParticipantList(eventName: any){
     return this.http.get(backendUrl+'/fetch_event_participants/'+eventName)
+  }
+
+  addGuestParticipant(guestUserName: string){
+    return this.http.post(backendUrl+"/add_guest_user",{"guestUserName": guestUserName})
   }
 
 }

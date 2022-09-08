@@ -24,7 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventAddComponent } from './components/event-add/event-add.component';
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatCardModule } from '@angular/material/card';
-import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component'
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
 
 
 @NgModule({
@@ -38,7 +42,11 @@ import { TransactionDetailsComponent } from './components/transaction-details/tr
     ParticipantLinkComponentComponent,
     GlobalParticipantsComponent,
     EventAddComponent,
-    TransactionDetailsComponent
+    TransactionDetailsComponent,
+    LoginComponent,
+    MainComponent,
+    RegisterComponent,
+    LoginAndRegisterComponent
   ],
   imports: [
     BrowserModule,
