@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { backendUrl } from 'src/app/backendUrl';
 import * as moment from 'moment';
+import { timestamp } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class LoginService {
   }
 
   setLoginInfos(tokenJson: any){
-    this.setSession(tokenJson.token, "3000")
+    this.setSession(tokenJson.token, tokenJson.expires_at)
   }
 
   registerUser(userName: string, password: string, name: string){
@@ -32,12 +33,13 @@ export class LoginService {
 
   isLoggedIn() {
     try{
-      // return moment().isBefore(this.getExpiration());
-      return localStorage.getItem("id_token")
-    } catch {
+      return moment().isBefore(this.getExpiration());
+    } catch(Error) {
+      console.log("in catch", Error)
       return false;
     }
   }
+
 
 
   logout() {
@@ -54,8 +56,7 @@ export class LoginService {
   getExpiration() {
     const expiration = localStorage.getItem("expires_at");
     if(expiration){
-      var expiresAt = JSON.parse(expiration);
-      return moment(expiresAt);
+      return moment(expiration);
     }
     else return moment(0)
     
