@@ -120,9 +120,9 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
 
   addGuestParticipant(){
     console.log(this.guestUserName)
-    // this.globalUsersService.addGuestParticipant(this.guestUserName).subscribe((res: any) => {
-    //   this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
-    // })
+    this.globalUsersService.addGuestParticipant(this.guestUserName).subscribe((res: any) => {
+      this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
+    })
 
   }
 

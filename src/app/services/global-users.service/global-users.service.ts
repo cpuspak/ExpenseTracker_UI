@@ -23,7 +23,7 @@ export class GlobalUsersService {
   }
 
   addGuestParticipant(guestUserName: string){
-    return this.http.post(backendUrl+"/add_guest_user",{"guestUserName": guestUserName})
+    return this.http.post(backendUrl+"/add_guest_user",{"Username": guestUserName})
   }
 
 }
