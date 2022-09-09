@@ -20,7 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { FormsModule } from '@angular/forms';
 import { ParticipantLinkComponentComponent } from './components/participant-link-component/participant-link-component.component';
 import { GlobalParticipantsComponent } from './components/global-participants/global-participants.component'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EventAddComponent } from './components/event-add/event-add.component';
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatCardModule } from '@angular/material/card';
@@ -29,6 +29,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
+import { AuthInterceptorService } from './services/authInterceptor.service/auth-interceptor.service';
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import { LoginAndRegisterComponent } from './components/login-and-register/login
     MatTabsModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

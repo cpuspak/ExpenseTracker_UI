@@ -1,11 +1,21 @@
-<label for="userName">UserName:</label><br>
-<input matInput placeholder="User Name" type="text" name="userName" id="userName" value="userName" [(ngModel)]="userName">
+<mat-form-field>
+    <mat-label for="userName">UserName:</mat-label><br>
+    <input matInput placeholder="User Name" type="text" name="userName" id="userName" value="userName" [(ngModel)]="userName">
+</mat-form-field>
 <br>
-<label for="password">Password:</label><br>
-<input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password">
+
+<mat-form-field>
+    <mat-label for="password">Password:</mat-label><br>
+    <input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password">
+    <br>
+</mat-form-field>
 <br>
-<label for="name">Name:</label><br>
-<input matInput placeholder="Name" type="text" name="name" id="name" value="name" [(ngModel)]="name">
+
+<mat-form-field>
+    <mat-label for="name">Name:</mat-label><br>
+    <input matInput placeholder="Name" type="text" name="name" id="name" value="name" [(ngModel)]="name">
+</mat-form-field>
+
 <br><br>
 <button mat-raised-button (click)="registerUser()">Register</button>
 <br>

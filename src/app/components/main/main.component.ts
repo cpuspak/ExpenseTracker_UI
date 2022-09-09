@@ -3,6 +3,7 @@ import { EventsService } from 'src/app/services/events.service/events.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EventAddComponent } from '../event-add/event-add.component';
 import { CalculateService } from 'src/app/services/calculate.service/calculate.service';
+import { LoginService } from 'src/app/services/login.service/login.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +15,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   allEvents: any = []
   constructor(private eventsService: EventsService,
     public dialog: MatDialog,
-    private calculateService: CalculateService){}
+    private calculateService: CalculateService,
+    private loginService: LoginService){}
 
 
   transactions: any = []
@@ -43,6 +45,11 @@ export class MainComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(EventAddComponent,{
       "width": "90vw"
     });
+  }
+
+  logoutUser(){
+    this.loginService.logout()
+    window.location.href = ""
   }
 
 }

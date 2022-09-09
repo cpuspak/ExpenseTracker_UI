@@ -20,12 +20,17 @@ export class LoginComponent implements OnInit {
 
   loginUser(){
     this.message = ""
-    this.loginService.loginUser(this.userName, this.password).subscribe((res: any) => {
-      console.log(res)
-    },
-    err => {
-      console.log("error loging in user")
-      this.message = "Error!"
-    })
+    this.loginService.generateToken(this.userName, this.password).subscribe((res: any) => {
+      if(res && res.token){
+        try{
+          this.loginService.setLoginInfos(res)
+          this.message = ""
+          window.location.href = ""
+        } catch {
+          this.message = "error!"
+        }
+      } else this.message = "error!"
+    }, err => this.message = "error!")
+    
   }
 }
