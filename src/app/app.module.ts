@@ -30,6 +30,10 @@ import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
 import { AuthInterceptorService } from './services/authInterceptor.service/auth-interceptor.service';
+import { FilterByNameComponent } from './components/filter-by-name/filter-by-name.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ParticipantSearchTabComponent } from './components/participant-search-tab/participant-search-tab.component';
 
 
 @NgModule({
@@ -47,7 +51,9 @@ import { AuthInterceptorService } from './services/authInterceptor.service/auth-
     LoginComponent,
     MainComponent,
     RegisterComponent,
-    LoginAndRegisterComponent
+    LoginAndRegisterComponent,
+    FilterByNameComponent,
+    ParticipantSearchTabComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,9 @@ import { AuthInterceptorService } from './services/authInterceptor.service/auth-
     FormsModule,
     HttpClientModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]

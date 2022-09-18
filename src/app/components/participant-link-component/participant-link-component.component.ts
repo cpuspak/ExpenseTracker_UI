@@ -22,61 +22,35 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
             public dialogRef: MatDialogRef<EventAddComponent>) { }
 
   ngOnInit(): void {
-    this.globalUsersService.getGlobalListOfUsers().subscribe((res: any) => {
-      if(res && res.Participants && res.Participants.length){
-        this.participants = res.Participants
 
-        this.participants.forEach((element:any) => {
-          element.selected = false
-          element.disabled = false
-        });
-        this.globalUsersService.getEventSpecificParticipantList(this.data.eventName).subscribe((res: any) => {
-          if(res && res.EventParticipants) {
-            res.EventParticipants.forEach((element: any) => {
-              this.participants.forEach((participant: any) => {
-                if (participant.id == element.id){
-                  participant.selected = true
-                  participant.disabled = true
-                }
-              })
-            })
-          }
+    this.globalUsersService.getEventSpecificParticipantList(this.data.eventName).subscribe((res: any) => {
+      if(res && res.EventParticipants) {
+        this.participants = res.EventParticipants
+        this.participants.forEach((participant: any) => {
+          participant.selected = true
+          participant.disabled = true
         })
-      
+        this.sendParticipantList()
       }
-
-
-
     })
   }
 
   ngAfterViewInit(): void {
-    this.globalUsersService.eventParticipantsFetchTrigger.subscribe((res: any) => {
-      if (!res || res != this.data.eventName) return;
-      
-      this.globalUsersService.getGlobalListOfUsers().subscribe((res: any) => {
-        if(res && res.Participants && res.Participants.length){
-          this.participants = res.Participants
-  
-          this.participants.forEach((element:any) => {
-            element.selected = false
-            element.disabled = false
-          });
-          this.globalUsersService.getEventSpecificParticipantList(this.data.eventName).subscribe((res: any) => {
-            if(res && res.EventParticipants) {
-              res.EventParticipants.forEach((element: any) => {
-                this.participants.forEach((participant: any) => {
-                  if (participant.id == element.id){
-                    participant.selected = true
-                    participant.disabled = true
-                  }
-                })
-              })
-            }
-          })
-        }
+
+    this.globalUsersService.temporaryParticipantTrigger.subscribe((res: any) => {
+      console.log(res, "from destination of pipe", this.participants)
+      this.participants.push({
+        "id": res.id,
+        "username": res.username,
+        "selected": false,
+        "disabled": false
       })
+      this.sendParticipantList()
     })
+  }
+
+  sendParticipantList(){
+    this.globalUsersService.triggerCurrentParticipantList.next(this.participants);
   }
 
 

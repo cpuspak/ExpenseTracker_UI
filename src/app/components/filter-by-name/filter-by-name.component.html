@@ -1,0 +1,24 @@
+<form [formGroup]="searchFormGroup">
+    <mat-form-field>
+        <mat-label>
+            Search :
+        </mat-label>
+        
+        <input formControlName="participantFormControl" matInput type="text" [matAutocomplete]="autocompleteLink" />
+        
+        <mat-autocomplete #autocompleteLink="matAutocomplete" >
+            <mat-option *ngFor="let filteredParticipant of filteredParticipants" 
+            [value]="filteredParticipant.username" 
+            [id]="filteredParticipant.id" 
+            (click)="sendParticipant($event)">
+                <!-- <app-participant-search-tab 
+                    class="parentClass"
+                    [participantName]="filteredParticipant.username"
+                >
+                </app-participant-search-tab> -->
+                {{filteredParticipant.username}}
+            </mat-option>
+        </mat-autocomplete>
+        
+    </mat-form-field>
+</form>

@@ -10,6 +10,8 @@ export class GlobalUsersService {
 
   eventParticipantsFetchTrigger = new Subject()
   eventUserFetchTrigger = new Subject()
+  temporaryParticipantTrigger = new Subject()
+  triggerCurrentParticipantList = new Subject()
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +26,10 @@ export class GlobalUsersService {
 
   addGuestParticipant(guestUserName: string){
     return this.http.post(backendUrl+"/add_guest_user",{"Username": guestUserName})
+  }
+
+  getParticipantNameByUserName(participantName: string, eventName: string){
+    return this.http.get(backendUrl+"/fetch_participants/"+participantName)
   }
 
 }
