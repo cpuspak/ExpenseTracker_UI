@@ -9,43 +9,12 @@ import { CalculateService } from './services/calculate.service/calculate.service
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  allEvents: any = []
+export class AppComponent {
 
   title = 'expense-tracker-ui';
-  constructor(private eventsService: EventsService,
-              public dialog: MatDialog,
-              private calculateService: CalculateService){
+  constructor(){
 
   }
 
-
-  transactions: any = []
-  ngOnInit():void {
-    this.eventsService.fetchAllEvents().subscribe((res: any) => {
-      if(res && res.Events && res.Events.length) this.allEvents = res.Events;
-    },
-    err => console.log("error fetching events from api"))
-  }
-
-  ngAfterViewInit(): void {
-    this.eventsService.eventFetchTrigger.subscribe((res: any) => {
-      this.eventsService.fetchAllEvents().subscribe((event: any) => {
-        if (event && event.Events && event.Events.length)
-        this.allEvents = event.Events
-      })
-    })
-
-    this.calculateService.getCalculatedData.subscribe((calculatedData: any) => {
-      if (calculatedData && calculatedData.transactionDetails) this.transactions = calculatedData.transactionDetails
-    })
-  }
-
-  addEventPopup(){
-    // this.eventsService.sendAddEventRequest.next(0);
-    const dialogRef = this.dialog.open(EventAddComponent,{
-      "width": "90vw"
-    });
-  }
 
 }

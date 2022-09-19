@@ -1,0 +1,8 @@
+.participants {
+    background-color: black;
+    margin: 4px;
+    padding:4%;
+    border-radius: 17%;
+    display: inline-block;
+    text-align: center;
+}

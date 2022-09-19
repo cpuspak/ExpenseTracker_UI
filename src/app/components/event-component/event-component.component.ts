@@ -7,7 +7,7 @@ import { EventsService } from 'src/app/services/events.service/events.service';
 import { GlobalUsersService } from 'src/app/services/global-users.service/global-users.service';
 import { CalculateService } from 'src/app/services/calculate.service/calculate.service';
 import { TransactionsService } from 'src/app/services/transactions.service/transactions.service';
-
+import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
 
 @Component({
   selector: 'app-event-component',
@@ -66,6 +66,13 @@ export class EventComponentComponent implements OnInit, AfterViewInit {
       },
       err => console.log("error fetching transactions"))
     })
+  }
+
+  transactionDetails() {
+    const dialogRef = this.dialog.open(TransactionDetailsComponent ,{
+      "width": "90vw",
+      data: {eventName: this.eventName}
+    });
   }
 
   addTransaction() {

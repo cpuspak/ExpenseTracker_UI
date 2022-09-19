@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GlobalUsersService } from 'src/app/services/global-users.service/global-users.service';
 import { TransactionsService } from 'src/app/services/transactions.service/transactions.service';
+import { CalculateService } from 'src/app/services/calculate.service/calculate.service';
 
 @Component({
   selector: 'app-transaction-add',
@@ -18,6 +19,7 @@ export class TransactionAddComponent implements OnInit {
 
 
   constructor(private globalUsersService: GlobalUsersService,
+              private calculateService: CalculateService,
               @Inject(MAT_DIALOG_DATA) public data: {"eventName":""},
               private transactionsService: TransactionsService,
               public dialogRef: MatDialogRef<TransactionAddComponent>) { }
@@ -67,9 +69,7 @@ export class TransactionAddComponent implements OnInit {
       this.transactionsService.triggerFetchTransaction.next(this.data.eventName)
     },
     err => console.log("err adding txn"))
-
     this.closeDialog()
-
   }
 
   closeDialog(){
