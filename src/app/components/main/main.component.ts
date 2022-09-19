@@ -22,7 +22,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   transactions: any = []
   ngOnInit():void {
     this.eventsService.fetchAllEvents().subscribe((res: any) => {
-      if(res && res.Events && res.Events.length) this.allEvents = res.Events;
+      console.log(res, "events")
+      if(res && res.Events && res.Events.length) this.allEvents = res.Events.sort((a: any,b: any) => a.EventTime > b.EventTime);
     },
     err => console.log("error fetching events from api"))
   }

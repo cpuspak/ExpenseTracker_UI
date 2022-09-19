@@ -22,7 +22,11 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
             public dialogRef: MatDialogRef<EventAddComponent>) { }
 
   ngOnInit(): void {
+    this.refreshParticipantList()
+    
+  }
 
+  refreshParticipantList(){
     this.globalUsersService.getEventSpecificParticipantList(this.data.eventName).subscribe((res: any) => {
       if(res && res.EventParticipants) {
         this.participants = res.EventParticipants
@@ -75,9 +79,11 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
     })
     this.eventsService.addParticipantsToEvent(this.data.eventName, localParticipantList).subscribe((res: any) => {
       this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
+      this.refreshParticipantList()
     },
     err => console.log("internal server error"))
-    this.closeOverlay()
+    // this.closeOverlay()
+    
     
   }
 
@@ -95,8 +101,18 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
   addGuestParticipant(){
     console.log(this.guestUserName)
     this.globalUsersService.addGuestParticipant(this.guestUserName).subscribe((res: any) => {
-      this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
-    })
+      if (res && res.id && res.username){
+        console.log(res)
+        this.participants.push({
+          "id": res.id,
+          "username": res.username,
+          "selected": false,
+          "disabled": false
+        })
+        this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
+      }
+    },
+    err => console.log("error fetching data"))
 
   }
 
