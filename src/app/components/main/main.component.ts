@@ -31,6 +31,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.allEvents = res.Events.sort((a: any,b: any) => a.EventTime > b.EventTime);
         this.addEventBufferFlag = false
       }
+      if (res && res.Events && res.Events.length == 0) this.addEventBufferFlag = false
     },
     err => console.log("error fetching events from api"))
   }
