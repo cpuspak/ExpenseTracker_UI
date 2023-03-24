@@ -1,0 +1,30 @@
+.image {
+    width: 95px;
+    border-radius: 5%;
+    position: relative;
+    left: 2%;
+    top: 1vw;
+}
+
+.imgDiv {
+    position: relative;
+    margin-left: 69%;
+    top: 10vw;
+}
+
+.txns {
+    width: 35%;
+    position: relative;
+    margin-left: 55%;
+    background-color: black;
+}
+
+.events {
+    height: 95vh;
+    overflow: auto;
+}
+
+div.inline { 
+    float:left; 
+}
+.clearBoth { clear:both; }

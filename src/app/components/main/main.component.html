@@ -1,0 +1,11 @@
+<div class = "events">
+    <span *ngIf="addEventBufferFlag">Loading Events ...</span><br>
+    <span>Events :</span>
+    <button mat-mini-fab color="accent" style="margin: 10px;" (click)="addEventPopup()">
+        <mat-icon>+</mat-icon>
+    </button><br><br>
+    <div *ngFor="let event of allEvents">
+        <app-event-component [eventId]="event.EventId" [eventName]="event.EventName"></app-event-component>
+    </div>
+</div>
+<button mat-raised-button color="warn" (click)="logoutUser()">Logout</button>

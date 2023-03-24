@@ -1,3 +1,27 @@
+<div class="eventCard inline">
+  <div class="cardHeader">{{eventName}}</div>
+  <hr class="hrEle">
+  <div class="participant">
+    <span *ngFor="let participant of participants">
+      <app-participant [participantName]="participant.username" [participantId]="participant.id"></app-participant>
+    </span>
+    <br>
+    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addParticipantToEvent()" style="margin: 5px;">
+      <mat-icon>+</mat-icon>
+    </button>
+  </div>
+  <div (click)="transactionDetails()">
+      
+      <div class = "description">
+        View More ...
+      </div>
+  </div>
+  
+  
+</div>
+
+
+<!--
 <mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false" class="pitch-black seperate">
@@ -34,3 +58,4 @@
   </mat-expansion-panel>
   
 </mat-accordion>
+-->

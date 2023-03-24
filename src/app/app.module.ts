@@ -20,10 +20,20 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { FormsModule } from '@angular/forms';
 import { ParticipantLinkComponentComponent } from './components/participant-link-component/participant-link-component.component';
 import { GlobalParticipantsComponent } from './components/global-participants/global-participants.component'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EventAddComponent } from './components/event-add/event-add.component';
 import { MatTabsModule } from '@angular/material/tabs'
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
+import { AuthInterceptorService } from './services/authInterceptor.service/auth-interceptor.service';
+import { FilterByNameComponent } from './components/filter-by-name/filter-by-name.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ParticipantSearchTabComponent } from './components/participant-search-tab/participant-search-tab.component';
 
 
 @NgModule({
@@ -36,7 +46,14 @@ import { MatCardModule } from '@angular/material/card'
     TransactionAddComponent,
     ParticipantLinkComponentComponent,
     GlobalParticipantsComponent,
-    EventAddComponent
+    EventAddComponent,
+    TransactionDetailsComponent,
+    LoginComponent,
+    MainComponent,
+    RegisterComponent,
+    LoginAndRegisterComponent,
+    FilterByNameComponent,
+    ParticipantSearchTabComponent
   ],
   imports: [
     BrowserModule,
@@ -53,9 +70,11 @@ import { MatCardModule } from '@angular/material/card'
     FormsModule,
     HttpClientModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

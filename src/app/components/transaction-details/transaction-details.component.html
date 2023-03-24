@@ -1,0 +1,53 @@
+<div class = "txnDetails">
+    <span *ngIf="transactionBufferingFlag" class="loader">Transaction Calculating ...</span>
+    <p>Transactions : </p>
+    <table class = "tbl">
+        <tr>
+            <th>Paid by</th>
+            <th>Paid for</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>
+        <tr *ngFor="let transaction of transactions">
+            <td>{{transaction.paidByUserName}}</td>
+            <td>{{transaction.sharedByUserNames}}</td>
+            <td>{{transaction.Amount}}</td>
+            <td>{{transaction.TxnID}}</td>
+            <td><button id={{transaction.TxnID}} class="circularRedButton" (click)="deleteTransaction($event)">-</button></td>
+        </tr>
+    </table>
+    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" (click)="addTransaction()">
+        <mat-icon>+</mat-icon>
+    </button>
+    <br>
+    <button mat-button (click)="calculate()" style="float: right;">Refresh</button>
+    <br>
+    <p>Transactions to do : </p>
+    <table class = "tbl">
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Amount</th>
+        </tr>
+        <tr *ngFor="let transaction of toDotxns">
+            <td>{{transaction[0]}}</td>
+            <td>{{transaction[1]}}</td>
+            <td>{{transaction[2]}}</td>
+        </tr>
+    </table>
+</div> 
+<!--
+<div class = "txnDetails">
+    <p>Transactions : </p>
+    <div *ngFor="let transaction of transactions">
+        <app-transaction 
+        [amount]="transaction.Amount" 
+        [transactionId]="transaction.TxnID" 
+        [paidByUserName]="transaction.paidByUserName" 
+        [transactionTime]="transaction.TxnTime"
+        [sharedByUserNames]="transaction.sharedByUserNames"
+        [eventName]="data.eventName">
+        </app-transaction>
+    </div>
+</div>
+-->

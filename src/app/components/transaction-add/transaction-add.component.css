@@ -1,6 +1,11 @@
-
+/* 
 .full-width {
     width: 100%;
+} */
+
+.transactionAdd {
+    max-height: 70vh;
+    overflow: scroll;
 }
 
 ul {
