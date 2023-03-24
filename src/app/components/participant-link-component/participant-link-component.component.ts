@@ -15,7 +15,8 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
   participants: any = []
   allSelected: boolean = false
   guestUserName: string = ""
-
+  disableGuestAddLink: boolean = false
+  filterParticipantErrorData: string = ""
   constructor(private globalUsersService: GlobalUsersService,
             @Inject(MAT_DIALOG_DATA) public data: {"eventName":""},
             private eventsService: EventsService,
@@ -51,6 +52,16 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
       })
       this.sendParticipantList()
     })
+
+    this.globalUsersService.triggerIfNoFilteredUser.subscribe((res: any) => {
+      if (res == 0)
+        this.disableGuestAddLink = true
+      else if(res == 1) 
+        this.disableGuestAddLink = false
+
+    })
+
+    
   }
 
   sendParticipantList(){
@@ -102,6 +113,7 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
     console.log(this.guestUserName)
     this.globalUsersService.addGuestParticipant(this.guestUserName).subscribe((res: any) => {
       if (res && res.id && res.username){
+        this.filterParticipantErrorData = ""
         console.log(res)
         this.participants.push({
           "id": res.id,
@@ -112,10 +124,18 @@ export class ParticipantLinkComponentComponent implements OnInit, AfterViewInit 
         this.globalUsersService.eventParticipantsFetchTrigger.next(this.data.eventName)
       }
     },
-    err => console.log("error fetching data"))
+    (err) => {
+      console.log("error fetching data")
+      this.filterParticipantErrorData = "Please check if user already exists"
+    })
 
   }
 
+
+  getParticipantName(participantName: string){
+    console.log("in parent", participantName)
+    this.guestUserName = participantName.trim()
+  }
 
   closeOverlay(){
     this.dialogRef.close()

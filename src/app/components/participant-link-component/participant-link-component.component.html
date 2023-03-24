@@ -1,31 +1,41 @@
-<div class = "participantPop">
-  <label for="participant-selection-section">Participant Name :</label>
-  <section class="participant-selection-section">
-    <span class="example-list-section">
-      <mat-checkbox class="select-all-participants"
-                    [checked]="allSelected"
-                    (change)="setAll($event.checked)">
-        Select All
-      </mat-checkbox>
-    </span>
-    <span class="participant-list">
-      <ul>
-        <li *ngFor="let participant of participants">
-          <mat-checkbox [(ngModel)]="participant.selected"
-                        (change)="valueChange(participant.username,$event)"
-                        [disabled]="participant.disabled">
-            {{participant.username}}
-          </mat-checkbox>
-        </li>
-      </ul>
-    </span>
-  </section>
+<span>
+  <div style="float: left; margin: 10px;">
+    <label for="participant-selection-section">Participant Name :</label>
+    <section class="participant-selection-section">
+      <span class="example-list-section">
+        <mat-checkbox class="select-all-participants"
+                      [checked]="allSelected"
+                      (change)="setAll($event.checked)">
+          Select All
+        </mat-checkbox>
+      </span>
+      <span class="participant-list">
+        <ul>
+          <li *ngFor="let participant of participants">
+            <mat-checkbox [(ngModel)]="participant.selected"
+                          (change)="valueChange(participant.username,$event)"
+                          [disabled]="participant.disabled">
+              {{participant.username}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </section>
+  
+    <button mat-raised-button (click)="addSelectedParticipantsToEvent()" [disabled]="!findWhetherAnySelected()? true: null">Add Selected Participants</button>
+  </div>
+  <span style="float: left; margin: 10px;">
+    <app-filter-by-name (participantEvent)="getParticipantName($event)" style="display: inline-block;"></app-filter-by-name><br>
+    <button style="display: inline-block;" *ngIf="guestUserName.length > 0" mat-button (click)="addGuestParticipant()">Add as a guest</button>
+    <br>
+    <span style="color: red;">{{filterParticipantErrorData}}</span>
+  </span>
+  
+</span>
 
-  <button mat-raised-button (click)="addSelectedParticipantsToEvent()" [disabled]="!findWhetherAnySelected()? true: null">Add Selected Participants</button>
-</div>
-<div>
+<!-- <div>
   <label for="add-guest-participant">Add as a guest : </label>
   <input type="text" name="add-guest-participant" id="add-guest-participant" value="guestUserName" [(ngModel)]="guestUserName">
   <button mat-button (click)="addGuestParticipant()">Add</button>
-</div>
-<app-filter-by-name></app-filter-by-name>
+</div> -->
+

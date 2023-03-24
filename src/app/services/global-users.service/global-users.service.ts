@@ -12,6 +12,7 @@ export class GlobalUsersService {
   eventUserFetchTrigger = new Subject()
   temporaryParticipantTrigger = new Subject()
   triggerCurrentParticipantList = new Subject()
+  triggerIfNoFilteredUser = new Subject()
 
   constructor(private http: HttpClient) { }
 

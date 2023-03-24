@@ -1,2 +1,6 @@
-<input matInput type="text" placeholder="eventName"[(ngModel)]="eventName" >
-<button mat-button (click)="addEvent($event)">Add</button>
+<mat-form-field>
+    <mat-label for="eventName">Event Name</mat-label>
+    <input matInput type="text" name="eventName" [(ngModel)]="eventName" />
+</mat-form-field><br>
+<button mat-raised-button (click)="addEvent($event)" [disabled]="!eventName.trim().length">Add</button>
+

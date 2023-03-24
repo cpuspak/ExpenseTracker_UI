@@ -1,46 +1,48 @@
-<mat-form-field appearance="fill">
+<div class="transactionAdd">
+  <mat-form-field appearance="fill">
     <mat-label>Money paid from : </mat-label>
     <mat-select [(ngModel)]="moneyFrom">
       <mat-option *ngFor="let participant of participants" [value]="participant.username">
         {{participant.username}}
       </mat-option>
     </mat-select>
-</mat-form-field>
+  </mat-form-field>
 
-<br>
+  <br>
 
-<label for="participant-selection-section">Money Paid For :</label>
-<section class="participant-selection-section">
-    <span class="example-list-section">
-      <mat-checkbox class="select-all-participants"
-                    [checked]="allComplete"
-                    (change)="setAll($event.checked)">
-        Select All
-      </mat-checkbox>
-    </span>
-    <span class="participant-list">
-      <ul>
-        <li *ngFor="let participant of participants">
-          <mat-checkbox [(ngModel)]="participant.selected"
-                        (change)="valueChange(participant.username,$event)">
-            {{participant.username}}
-          </mat-checkbox>
-        </li>
-      </ul>
-    </span>
-</section>
+  <label for="participant-selection-section">Money Paid For :</label>
+  <section class="participant-selection-section">
+      <span class="example-list-section">
+        <mat-checkbox class="select-all-participants"
+                      [checked]="allComplete"
+                      (change)="setAll($event.checked)">
+          Select All
+        </mat-checkbox>
+      </span>
+      <span class="participant-list">
+        <ul>
+          <li *ngFor="let participant of participants">
+            <mat-checkbox [(ngModel)]="participant.selected"
+                          (change)="valueChange(participant.username,$event)">
+              {{participant.username}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+  </section>
 
-<mat-form-field appearance="fill">
-    <mat-label class="full-width">Amount</mat-label>
-    <input matInput placeholder="Amount" [(ngModel)]="amount" type="number">
-</mat-form-field>
-<br>
+  <mat-form-field appearance="fill">
+      <mat-label class="full-width">Amount</mat-label>
+      <input matInput placeholder="Amount" [(ngModel)]="amount" type="number">
+  </mat-form-field>
+  <br>
 
-<mat-form-field appearance="fill">
-  <mat-label class="full-width">Description</mat-label>
-  <input matInput placeholder="Transaction Description" [(ngModel)]="description">
-</mat-form-field>
-<br>
+  <mat-form-field appearance="fill">
+    <mat-label class="full-width">Description</mat-label>
+    <input matInput placeholder="Transaction Description" [(ngModel)]="description">
+  </mat-form-field>
+  <br>
 
 
-<button mat-raised-button color="primary" style="float: right;" (click)="addTransaction()">Add</button>
+  <button mat-raised-button color="primary" style="float: right;" (click)="addTransaction()"  [disabled]="!moneyFrom.length || !amount || !getSelectedUsers().length">Add</button>
+</div>

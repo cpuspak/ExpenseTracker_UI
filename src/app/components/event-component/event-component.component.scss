@@ -23,12 +23,15 @@
 .eventCard {
     margin: 3%;
     padding: 1%;
-    width: 85vw;
+    // width: 85vw;
     max-width: 350px;
-    height: 400px;
+    // height: 400px;
+    min-width: 20vw;
+    min-height: 15vh;
     box-shadow: 3px 4px 8px 2px rgb(177, 138, 81);
     border-radius: 5%;
     background-color: rgb(31, 31, 31);
+    
 
 }
 
@@ -53,4 +56,5 @@ hr.hrEle {
 
 .description {
     overflow: auto;
+    cursor: pointer;
 }

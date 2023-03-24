@@ -77,14 +77,14 @@ export class EventComponentComponent implements OnInit, AfterViewInit {
 
   addTransaction() {
     const dialogRef = this.dialog.open(TransactionAddComponent,{
-      "width": "90vw",
+      "width": "10vw",
       data: {eventName: this.eventName}
     });
   }
 
   addParticipantToEvent() {
     const dialogRef = this.dialog.open(ParticipantLinkComponentComponent,{
-      "width": "90vw",
+      // "width": "90vw",
       data: {eventName: this.eventName}
     });
   }

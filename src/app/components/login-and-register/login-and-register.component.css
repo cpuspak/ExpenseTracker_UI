@@ -5,3 +5,9 @@
     text-align: center;
     background-color: white;
 }
+
+.parentCardDiv {
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+}

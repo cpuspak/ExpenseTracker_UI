@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { debounce, debounceTime, tap } from 'rxjs';
@@ -16,6 +16,9 @@ export class FilterByNameComponent implements OnInit, AfterViewInit {
   participants: Array<any> = []
   participantsForExclution: Array<any> = []
   searchFormGroup!: FormGroup
+  searchBoxData: string = ""
+
+  @Output() participantEvent = new EventEmitter<string>()
   
   constructor(private formBuilder: FormBuilder,
               private globalUsersService: GlobalUsersService) { }
@@ -41,9 +44,14 @@ export class FilterByNameComponent implements OnInit, AfterViewInit {
     }))
     .pipe(debounceTime(900))
     .subscribe((res: any) => {
-      if(res && res.length > 0)
-        this.filterData(res);
-      else this.filteredParticipants = []
+      if(res && res.trim().length > 0){
+        this.filterData(res.trim());
+        this.participantEvent.emit(res.trim())
+      }
+      else {
+        this.participantEvent.emit("")
+        this.filteredParticipants = []
+      }
     })
   }
 
@@ -59,6 +67,11 @@ export class FilterByNameComponent implements OnInit, AfterViewInit {
           return participant.username.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
         })
       }
+      if(this.participants.length == 0 || enteredData.trim() == ""){
+        this.globalUsersService.triggerIfNoFilteredUser.next(0)
+      } else {
+        this.globalUsersService.triggerIfNoFilteredUser.next(1)
+      }
     })
     
   }
@@ -70,5 +83,6 @@ export class FilterByNameComponent implements OnInit, AfterViewInit {
       { "id":event.currentTarget.id, "username": event.currentTarget.innerText.trim()}
     )
   }
+
 
 }
